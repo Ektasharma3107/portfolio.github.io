@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <style>
+        *{
+        margin: 0;
+        padding: 0;
+        font-family: 'poppins',sans-serif;
+        box-sizing: border-box;
+
+}
+body{
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    overflow: scroll    ; 
+}
+nav{
+    width: 100%; 
+    height: 10vh;
+    position: sticky;
+
+}
+.nav-container{
+width: 100%;
+height:  100%;
+display: flex;
+justify-content: space-around;
+align-items: center;
+}
+.logo{
+    color:white;
+    font-size: 2rem;
+    font-weight: bold;
+}
+.logo span{
+            color: rgb(20, 19, 19);
+            text-shadow: 0 0 10px #fff;
+}
+.humburg,
+.cancel{
+cursor: pointer;
+position: absolute;
+right: 15px;
+top: 10px;
+color: white;
+display: none;
+font-size: clamp(2.5rem, 0.5rem + 5vw,3rem);
+}
+.nav-container .links {
+    display: flex;
+}
+.nav-container .links a{
+    font-size: 1.2rem;
+    color: white;
+    margin: 0 20px;
+    text-decoration: none;
+    font-weight: 550;
+    transition: 0.3s linear;
+}
+.nav-container .links a:hover{
+    color: rgb(211,3,3);
+    border-bottom: 2px solid rgb(211,3,3);
+}
+.dropdown{
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    transform: translateY(-500px);
+    width: 100%;
+    height: auto;
+    backdrop-filter: blur(4px) brightness(40%);
+    box-shadow: 0 0  20px black;
+    transition: 0.2s linear;
+}   
+.dropdown .links a:hover{
+    background-color: rgb(19, 18, 18);
+}
+    </style>
+    <header>
+    <nav>
+  
+  <nav><div class="nav-container" >
+              <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
+                  Ekta 
+                      <span>SHARMA</span>
+              </div>
+              <div class="links">
+                  <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100"><a href="http://127.0.0.1:5501/index.html  ">Home</a></div>
+                  <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200"><a href="http://127.0.0.1:5501/index.html#about">About</a></div>
+                  <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300"><a href="http://127.0.0.1:5501/index.html#skills">Skills</a></div>
+                  
+                  <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400"><a href="http://127.0.0.1:5500/index.html#projects">projects</a></div>
+                  
+                  <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500"><a href="http://127.0.0.1:5501/index.html#contact">Contact</a></div>
+              </div>
+          </div>
+         
+          
+   
+   
+  </nav>
+</header>
+
+    
+</body>
+</html>
