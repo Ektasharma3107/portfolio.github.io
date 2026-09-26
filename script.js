@@ -1,100 +1,154 @@
- "https://unpkg.com/aos@next/dist/aos.js"
- AOS.init({offset:0,});
-    
-function hamburg(){ 
-    const navbar = document.querySelector(".dropdown")
-    navbar.style.transform  = "translateY(0px)"
-}
-function cancel(){
-    const navbar = document.querySelector(".dropdown")
-    navbar.style.transform  = "translateY(-500px)"
-} 
-// for Typewriter effect
-
-const texts = [
-    "FRONTEND DEVELOPER",
-    "Profession coder", 
-    "UI  designer"
-]
-
-let speed = 100;
-
-const textElements = document.querySelector(".typewriter-text")
-
-let textIndex = 0;
-let charcterIndex = 0;
-
-function typeWriter() {
-    if(charcterIndex < texts[textIndex].length){
-        textElements.innerHTML += texts[textIndex].charAt(charcterIndex);
-        charcterIndex++;
-        setTimeout(typeWriter, speed); 
-    }
-    else{
-        setTimeout(eraseText, 1000)
-    }
-}
-
-function eraseText() {
-    if(textElements.innerHTML.length > 0){
-        textElements.innerHTML = textElements.innerHTML.slice(0,-1)
-        setTimeout(eraseText, 50)
-    }
-    else{
-        textIndex = (textIndex + 1) % texts.length;
-        charcterIndex = 0;
-        setTimeout(typeWriter,500)
-    }
-}
-
-window.onload = typeWriter;
-
-   window.addEventListener("scroll", function(){
-    scrollBtn.classList.toggle("active", window.scrollY > 500);
-
-});
-
+// ========================================
+// DOM Loaded
+// ========================================
 
 document.addEventListener("DOMContentLoaded", function () {
-  fetch("header.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("header").innerHTML = data;
-    });
 
-  fetch("footer.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("footer").innerHTML = data;
-    });
+    // ========================================
+    // HAMBURGER MENU
+    // ========================================
+
+    const navbar = document.querySelector(".dropdown");
+
+    window.hamburg = function () {
+        if (navbar) {
+            navbar.style.transform = "translateY(0)";
+        }
+    };
+
+    window.cancel = function () {
+        if (navbar) {
+            navbar.style.transform = "translateY(-500px)";
+        }
+    };
+
+
+    // ========================================
+    // TYPEWRITER EFFECT
+    // ========================================
+
+    const texts = [
+        "FRONTEND DEVELOPER",
+        "PROFESSIONAL CODER",
+        "UI DESIGNER"
+    ];
+
+    const textElement = document.querySelector(".typewriter-text");
+
+    let textIndex = 0;
+    let characterIndex = 0;
+
+    const typingSpeed = 100;
+    const deletingSpeed = 50;
+    const waitTime = 1000;
+
+
+    function typeWriter() {
+
+        if (!textElement) {
+            console.log("typewriter-text class nahi mili");
+            return;
+        }
+
+        if (characterIndex < texts[textIndex].length) {
+
+            textElement.textContent +=
+                texts[textIndex].charAt(characterIndex);
+
+            characterIndex++;
+
+            setTimeout(typeWriter, typingSpeed);
+
+        } else {
+
+            setTimeout(eraseText, waitTime);
+        }
+    }
+
+
+    function eraseText() {
+
+        if (!textElement) return;
+
+        if (textElement.textContent.length > 0) {
+
+            textElement.textContent =
+                textElement.textContent.slice(0, -1);
+
+            setTimeout(eraseText, deletingSpeed);
+
+        } else {
+
+            textIndex =
+                (textIndex + 1) % texts.length;
+
+            characterIndex = 0;
+
+            setTimeout(typeWriter, 500);
+        }
+    }
+
+
+    // Start Typewriter
+    typeWriter();
+
+
+    // ========================================
+    // SCROLL BUTTON
+    // ========================================
+
+    const scrollBtn = document.querySelector(".scroll-btn");
+
+    if (scrollBtn) {
+
+        window.addEventListener("scroll", function () {
+
+            if (window.scrollY > 500) {
+                scrollBtn.classList.add("active");
+            } else {
+                scrollBtn.classList.remove("active");
+            }
+
+        });
+
+    }
+
+
+    // ========================================
+    // HEADER
+    // ========================================
+
+    const header = document.getElementById("header");
+
+    if (header) {
+
+        fetch("header.html")
+            .then(response => response.text())
+            .then(data => {
+                header.innerHTML = data;
+            })
+            .catch(error => {
+                console.log("Header Error:", error);
+            });
+    }
+
+
+    // ========================================
+    // FOOTER
+    // ========================================
+
+    const footer = document.getElementById("footer");
+
+    if (footer) {
+
+        fetch("footer.html")
+            .then(response => response.text())
+            .then(data => {
+                footer.innerHTML = data;
+            })
+            .catch(error => {
+                console.log("Footer Error:", error);
+            });
+    }
+
 });
- 
-<link src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></link>
-
-  // Initialize EmailJS
-  (function () {
-    emailjs.init("YOUR_USER_ID"); // Replace with your User ID
-  })();
-
-  // Handle form submit
-  document.getElementById("contact-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    emailjs.sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", this)
-      .then(function () {
-        document.getElementById("form-status").innerHTML = "✅ Message sent successfully!";
-        document.getElementById("contact-form").reset();
-      }, function (error) {
-        document.getElementById("form-status").innerHTML = "❌ Failed to send message.";
-        console.error("FAILED...", error);
-      });
-  });
-
-
-
-
-
-
-
-
- 
